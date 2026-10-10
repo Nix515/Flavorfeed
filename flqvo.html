@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorFeed | flavorfeed.store</title>
+
+    <!-- GOOGLE ANALYTICS STREAM CODE INTEGRATION -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YDK180Q0VD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YDK180Q0VD');
+
+    </script>
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-1K74HTTFYC"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-1K74HTTFYC'); </script> 
+    <!-- ========================================== -->
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="brand" onclick="openHome()">FlavorFeed</div>
+        <div class="nav-right-container">
+            <!-- 3-Dash Hamburger Button -->
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar Overlay & Menu -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">FlavorFeed Menu</div>
+            <button class="close-sidebar-btn" id="close-sidebar-btn">&times;</button>
+        </div>
+        <div class="sidebar-menu">
+            <button class="sidebar-link" id="side-nav-home">Home Feed</button>
+            <button class="sidebar-link" id="side-nav-favs">Favorites</button>
+            <button class="sidebar-link" id="side-nav-history">Viewing History</button>
+            <button class="sidebar-link" id="side-nav-about">About Us</button>
+            <button class="sidebar-link" id="side-nav-terms">Terms and Conditions</button>
+        </div>
+        <div class="sidebar-contact-info">
+            <strong>Contact Us:</strong><br>
+            Website: flavorfeed.store<br>
+            Email: flavorfeed256@gmail.com<br>
+            Phone/WhatsApp: +256 730 519 236
+        </div>
+    </aside>
+
+    <main style="width: 100%;">
+        
+        <!-- Home / Feed Section -->
+        <section id="feed-section" class="page-section active">
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="Search recipes..." id="search-bar">
+            </div>
+
+            <div class="category-m enu" id="category-menu">
+                <button class="category-btn active" data-filter="All">All</button>
+                <button class="category-btn" data-filter="Tea">Tea</button>
+                <button class="category-btn" data-filter="Seafood">Seafood</button>
+                <button class="category-btn" data-filter="Normal Food">Normal Food</button>
+            </div>
+
+            <div class="video-grid" id="video-grid">
+                
+                <div class="video-card" data-category="Tea" data-id="1">
+                    <div class="video-thumbnail" data-type="youtube" data-url="0Cy-poItiRo">
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-text">
+                            <div class="video-title">Masala Chai Recipe</div>
+                            <div class="video-author">By Astro</div>
+                        </div>
+                        <button class="card-fav-btn" onclick="event.stopPropagation(); toggleFavorite(1)">Favorite</button>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="Seafood" data-id="2">
+                    <div class="video-thumbnail" data-type="youtube" data-url="j7BkpjD-HZ0">
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-text">
+                            <div class="video-title">Grilled Salmon with Garlic Lime Butter</div>
+                            <div class="video-author">By Astro</div>
+                        </div>
+                        <button class="card-fav-btn" onclick="event.stopPropagation(); toggleFavorite(2)">Favorite</button>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="Normal Food" data-id="3">
+                    <div class="video-thumbnail" data-type="youtube" data-url="9SGLviW38ok">
+                
+                <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-text">
+                            <div class="video-title">Instant Noodles</div>
+                            <div class="video-author">By Astro</div>
+                        </div>
+                        <button class="card-fav-btn" onclick="event.stopPropagation(); toggleFavorite(3)">Favorite</button>
+                    </div>
+                </div>
+
+                 <div class="video-card" data-category="Normal Food" data-id="4">
+                    <div class="video-thumbnail" data-type="youtube" data-url="3yYE8D_rsy8">
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-text">
+                            <div class="video-title">Delicious Breakfast</div>
+                            <div class="video-author">By Astro</div>
+                        </div>
+                        <button class="card-fav-btn" onclick="event.stopPropagation(); toggleFavorite(4)">Favorite</button>
+                    </div>
+                </div>
+
+                 <div class="video-card" data-category="Seafood" data-id="5">
+                    <div class="video-thumbnail" data-type="youtube" data-url="uABHMm-7oW8">
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-text">
+                            <div class="video-title">Shrimp Scampi</div>
+                            <div class="video-author">By Astro</div>
+                        </div>
+                        <button class="card-fav-btn" onclick="event.stopPropagation(); toggleFavorite(5)">Favorite</button>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </section>
+
+        <!-- Recipe Details View -->
+        <section id="details-section" class="page-section">
+            <div class="details-container">
+                <div style="width: 100%;" id="player-column">
+                    <div class="mode-selection">
+                        <button class="mode-btn active" id="mode-standard">Smooth Playback</button>
+                        <button class="mode-btn" id="mode-step">Step-by-Step</button>
+                        <button class="fav-action-btn" id="detail-fav-btn">Add to Favorites</button>
+                    </div>
+                    <video id="active-video" controls controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="" type="video/mp4">
+                    </video>
+                    <div id="youtube-container" style="display: none;"></div>
+                </div>
+                
+                <div class="recipe-content">
+                    <h2 class="recipe-title" id="recipe-title">Recipe Title</h2>
+                    
+                    <div class="recipe-section-title">Ingredients</div>
+                    <ul id="recipe-ingredients"></ul>
+
+                    <div class="recipe-section-title">Instructions</div>
+                    <ol id="recipe-steps"></ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section id="favorites-section" class="page-section">
+            <div class="list-container">
+                <div class="list-header">
+                    <h2 style="color: var(--accent-red);">Your Favorites</h2>
+                    <button class="clear-btn" id="clear-favs-btn">Clear Favorites</button>
+                </div>
+                <div id="favorites-list">
+                    <p style="color: var(--text-muted);">No favorite recipes saved yet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- History / Saved Section -->
+        <section id="history-section" class="page-section">
+            <div class="list-container">
+                <div class="list-header">
+                    <h2 style="color: var(--accent-red);">Viewing History</h2>
+                    <button class="clear-btn" id="clear-history-btn">Clear History</button>
+                </div>
+                <div id="history-list">
+                    <p style="color: var(--text-muted);">No viewing history yet. Explore some recipes!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- About Us Modal -->
+    <div class="info-modal" id="about-modal">
+        <div class="info-modal-content">
+            <button class="close-info-modal" id="close-about-btn">&times;</button>
+            <h2>About FlavorFeed</h2>
+            <p>Welcome to <strong>FlavorFeed</strong> (<a href="https://flavorfeed.store" target="_blank">flavorfeed.store</a>), your premium culinary directory connecting food enthusiasts with curated step-by-step recipes, interactive video tutorials, and luxury food experiences.</p>
+            <p>Our platform aggregates culinary techniques and showcases recipes ranging from quick refreshments to gourmet meals, tailored for modern food lovers worldwide.</p>
+            <h3>Our Mission</h3>
+            <p>To make cooking accessible, engaging, and seamless through high-quality video demonstrations, ingredient guides, and interactive step-by-step modes.</p>
+            <h3>Get in Touch</h3>
+            <p>Have questions, feedback, or business partnership inquiries? Reach out directly to our team:</p>
+            <ul>
+                <li><strong>Website:</strong> flavorfeed.store</li>
+                <li><strong>Email:</strong> floverfeed256@gmail.com</li>
+                <li><strong>Phone/WhatsApp:</strong> +256 730 519 236</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions + Privacy Policy Modal -->
+    <div class="info-modal" id="terms-modal">
+        <div class="info-modal-content">
+            <button class="close-info-modal" id="close-terms-btn">&times;</button>
+            <h2>Terms of Service & Disclaimer</h2>
+            <p><em>Last Updated: October 2026</em></p>
+            <p>Please read these Terms and Conditions ("Terms") carefully before using the website <strong>https://flavorfeed.store</strong> ("FlavorFeed", "we", "us", or "our").</p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing or using FlavorFeed, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access our services.</p>
+
+            <h3>2. Recipe & Health Liability Disclaimer (No Medical/Nutritional Advice)</h3>
+            <p>All recipes, cooking instructions, ingredient measurements, and health-related statements provided on FlavorFeed are for informational and educational purposes only. FlavorFeed does not guarantee specific cooking results, nutritional outcomes, or freedom from food allergens.</p>
+            <p><strong>Limitation of Food Safety Liability:</strong> Users are solely responsible for inspecting ingredients for fresh quality, managing proper food handling/sanitation practices, preventing cross-contamination, ensuring proper internal cooking temperatures, and avoiding personal dietary allergens or sensitivities. FlavorFeed and its operators shall not be held liable for any illness, allergic reaction, food poisoning, kitchen injuries, or damages resulting from the execution of any recipe hosted or linked on this platform.</p>
+
+            <h3>3. Third-Party Media & Embedded Content Disclaimer</h3>
+            <p>FlavorFeed embeds media files, audio visual assets, and video streams hosted on third-party platforms (including YouTube and external cloud storage servers). All embedded intellectual property rights, trademarks, and media copyrights remain the exclusive property of their respective owners.</p>
+            <p>FlavorFeed does not host, modify, or store unauthorized copyrighted video content on its servers. Embedded YouTube videos operate under YouTube’s Developer Terms of Service and standard YouTube embedding parameters.</p>
+
+            <h3>4. DMCA & Copyright Takedown Notice</h3>
+            <p>If you are a copyright owner or an agent thereof and believe that any content or embedded link on FlavorFeed infringes upon your copyright, you may submit a notification pursuant to the Digital Millennium Copyright Act (DMCA) by emailing us at <strong>floverfeed256@gmail.com</strong> with the following details:</p>
+            <ul>
+                <li>Identification of the copyrighted work claimed to have been infringed.</li>
+                <li>Identification of the specific URL or recipe title on FlavorFeed.</li>
+                <li>Your contact information including phone number (+256730519236) or valid email address.</li>
+            </ul>
+
+            <h3>5. Limitation of Liability</h3>
+            <p>In no event shall FlavorFeed, its creators, partners, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your access to, use of, or inability to use this platform, any third-party links, or external media services.</p>
+
+            <h3>6. External Services & Analytics</h3>
+            <p>FlavorFeed utilizes tracking technologies such as Google Analytics 4 (GA4) to evaluate website traffic and improve user experience. By using this platform, you consent to standard anonymous telemetry processing in accordance with Google's Privacy Policies.</p>
+
+            <h3>7. Contact Details</h3>
+            <p>For any legal inquiries or formal notices, please contact:</p>
+            <p><strong>FlavorFeed Legal & Operations</strong><br>Email: floverfeed256@gmail.com<br>Phone: +256 730 519 236<br>Domain: flavorfeed.store</p>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" id="nav-home">
+            <span>Home</span>
+        </button>
+        <button class="nav-btn" id="nav-favs">
+            <span>Favorites</span>
+        </button>
+        <button class="nav-btn" id="nav-history">
+            <span>History</span>
+        </button>
+    </nav>
+
+    <script>
+        /* ==========================================================
+           ANALYTICS HELPER & TELEMETRY FUNCTIONS
+           ========================================================== */
+        function trackEvent(action, category, label, extraParams = {}) {
+            if (typeof gtag === 'function') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label,
+                    ...extraParams
+                });
+            }
+            console.log("Analytics Tracked -> Action:", action, "| Category:", category, "| Label:", label, extraParams);
+        }
+        /* ========================================================== */
+
+        const recipeData = {
+            1: {
+                id: 1,
+                title: "Masala Chai Recipe",
+                category: "Tea",
+                ingredients: ["3 tbsp Cardamom","2-3 tsp Balck Cardamom","1 tbsp Black Pepper","2 tsp Cloves","Cinnamon","1 tsp Fennel Seeds","1 Nutmeg","2 tbsp Ginger powder","2 tsp Tea Powder","2-3 tsp Sugar","1.5 cups Milk"],
+                steps: ["1. Homemade Tea Masala Preparation :","Toast the spices: Dry roast green cardamom (3 tbsp), black cardamom (2-3 tsp), black pepper (1 tbsp), cloves (2 tsp), cinnamon sticks, and fennel seeds (1 tsp) on low-medium heat for 3-4 minutes until aromatic ","Add Nutmeg: Crush 1 piece of jaifal (nutmeg) using a mortar and pestle and add it to the roasting spices for another minute ","Grind: Once cooled, transfer the spices to a blender and grind into a coarse mixture ","Final touch: Add 2 tbsp of ginger powder, pulse once more, and store in an airtight container ","2. Making the Masala Chai ","Boil the base: Bring 1.5 cups of water to a boil, then add 2 tsp of tea leaves ","Sweeten: Add 2-3 tsp of sugar (or jaggery) to the boiling mixture ","Add Milk: Pour in 1.5 cups of milk (ratio 1:1) and boil for 1 minute ","Flavor: Add 1/4 tsp of the prepared masala powder and boil for another 3-4 minutes. You can also add fresh basil or mint leaves for extra aroma","Serve: Strain the hot tea into cups and serve with biscuits"],
+                videoType: "youtube",
+                videoUrl: "0Cy-poItiRo" 
+            },
+            2: {
+                id: 2,
+                title: "Grilled Salmon with Garlic Lime Butter",
+                category: "Seafood",
+                ingredients: ["1/2 cup unsalted butter (8 Tbsp)","4 cloves garlic smashed (NOT PRESSED)","2 Tbsp lime juice (from 1 lime)plus lime wedges to serve","2 Tbsp dill chopped, plus more to garnish","1 tsp sea salt","1/4 tsp black pepper","2 lbs salmon filet skin-on"],
+                steps: ["Prepare the Salmon: Check the 2 lb fillet for any remaining bones  and remove them with tweezers. Cut the fillet into 6 even portions","Make the Garlic Lime Butter:","Melt 8 Tbsp (1 stick) of unsalted butter in a small saucepan over medium heat ","Add 4 smashed garlic cloves, 1 tsp salt, and 1/4 tsp pepper ","Simmer for a minute, then stir in 2 Tbsp of chopped fresh dill and 2 Tbsp of fresh lime juice ","Marinate: Spoon one-third of the butter sauce over the salmon and brush it evenly over the top and sides ","Prep the Grill: Preheat your grill to medium heat (350°F to 400°F). Oil the grates using a paper towel dipped in high-heat oil to prevent sticking ","Grill: Place the salmon skin-side up on the grill. Cook for 3 minutes (3:25), then flip . Brush on another third of the butter sauce", "Finish: Grill for another 2 minutes until the internal temperature reaches 140°F . It will reach the ideal 145°F while resting (4:01). Serve with extra lime wedges and the remaining butter sauce "],
+                videoType: "youtube",
+                videoUrl: "j7BkpjD-HZ0"
+            },
+            3: {
+                id: 3,
+                title: "Instant Noodles",
+                category: "Normal Food",
+                ingredients: [" 1 pack instant noodles (any type)", " 3 eggs", " 1/2 onion", " 1/2 carrot", " A small amount of red and yellow bell pepper", " Green onions" ," 30 g cheese", " 5 g sesame seeds", " 10 g cornstarch" ," Vegetable oil " ," Seasonings: salt and black pepper"],
+                 steps: ["Unavailable"],
+                videoType: "youtube",
+                videoUrl: "9SGLviW38ok"
+            },
+            4: {
+                id: 4,
+                title: "Delicous Breakfast",
+                category: "Normal Food",
+                ingredients: ["--Recipe 1", "2 eggs", "2 small tomatoes", "1/2 onions", "vegetable oil", "Minced meat 200 g", "Parsley", "Italian herbs", "Red pepper", "Dried garlic", "Salt", "Tortilla", "Mozzarella", "--Recipe 2", "Chicken breasts 800 g", "4 small potatoes", "1/2 onion", "1 carrot", "salt", "Red pepper", "Black pepper", "1 egg", "Flour 2 tbsp", "Dill", "Butter 40 g", "2 cloves of garlic", "Lemon juice 1 tbsp", "Ginger", "Soy sauce 2 tbsp", "Honey 1 tsp", "--Recipe 3", "Green onions", "2 eggs", "3 tortillas", "Salt 1 tsp" ,"Black pepper", "Thyme", "Mozzarella cheese 100 g"],
+                steps: ["--Recipe 1","Add fried minced meat to eggs.", "Add fried minced meat.", "In the oven 200℃/400℉/15 minutes.", "--Recipe 2" ,"Mix well", "Fly on both sides over medium heat", "Cook for 10 minutes over low heat.", "--Recipe 3", "Chop and add to bowl", "In the oven 30minutes /400℉/200℃"],
+                videoType: "youtube",
+                videoUrl: "3yYE8D_rsy8" 
+            },
+             5: {
+                id: 5,
+                title: "Shrimp Scampi",
+                category: "Seafood",
+                ingredients: ["Potato: A large baking potato ","Potato Seasoning: Infused olive oil and bacon-flavored sea salt ","Shrimp: Fresh shrimp ","Cooking Fat: Infused garlic olive oil and unsalted butter ","Flavor Base: Fresh garlic cloves , white cooking wine , and fresh lemon juice ","Seasoning & Herbs: Italian seasoning  and fresh parsley ","Finishing Touches: Parmesan cheese , bacon bits , shredded cheese , and sour cream for the baked potato topping"],
+                steps: ["1. Prepare the Baked Potato:","Preheat your oven to 350°F ","Use a fork to poke holes in the potato to allow steam to escape ","Use a fork to create a line across the top for easy opening later ","Coat the potato with infused olive oil (1:05) and sprinkle with bacon-flavored sea salt ","Bake for one hour ","2. Prepare the Shrimp:","Pat the shrimp dry with a napkin to remove residual water ","Heat a pan over medium-high heat with infused garlic olive oil ","Sear the shrimp in batches for 2-3 minutes until they turn pink, then remove from the pan ","3. Make the Scampi Sauce:","In the same pan, melt 6 tablespoons of unsalted butter over medium heat ","Add fresh garlic cloves (7:29) and sauté briefly","Deglaze the pan with white cooking wine (8:08) and squeeze in fresh lemon juice ","Allow the sauce to reduce and thicken ","Stir in Italian seasoning (9:41) and fresh parsley ","4. Final Assembly:","Reintroduce the cooked shrimp to the sauce to coat them ","Finish with a sprinkle of Parmesan cheese (10:35)","Open the baked potato, top with the shrimp scampi sauce, bacon bits, shredded cheese, and sour cream"],
+                videoType: "youtube",
+                videoUrl: "uABHMm-7oW8" 
+            }
+        };
+
+        // YouTube ID Extractor helper
+        function getYouTubeId(urlOrId) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = urlOrId.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : urlOrId;
+        }
+
+        // DOM Element Selectors
+        const feedSection = document.getElementById('feed-section');
+        const detailsSection = document.getElementById('details-section');
+        const favoritesSection = document.getElementById('favorites-section');
+        const historySection = document.getElementById('history-section');
+        const videoCards = document.querySelectorAll('.video-card');
+        const searchBar = document.getElementById('search-bar');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        
+        const navHome = document.getElementById('nav-home');
+        const navFavs = document.getElementById('nav-favs');
+        const navHistory = document.getElementById('nav-history');
+        const clearHistoryBtn = document.getElementById('clear-history-btn');
+        const clearFavsBtn = document.getElementById('clear-favs-btn');
+
+        const activeVideo = document.getElementById('active-video');
+        const youtubeContainer = document.getElementById('youtube-container');
+        const modeStandard = document.getElementById('mode-standard');
+        const modeStep = document.getElementById('mode-step');
+        const detailFavBtn = document.getElementById('detail-fav-btn');
+
+        // Sidebar & Modals Controls
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+
+        const sideNavHome = document.getElementById('side-nav-home');
+        const sideNavFavs = document.getElementById('side-nav-favs');
+        const sideNavHistory = document.getElementById('side-nav-history');
+        const sideNavAbout = document.getElementById('side-nav-about');
+        const sideNavTerms = document.getElementById('side-nav-terms');
+
+        const aboutModal = document.getElementById('about-modal');
+        const termsModal = document.getElementById('terms-modal');
+        const closeAboutBtn = document.getElementById('close-about-btn');
+        const closeTermsBtn = document.getElementById('close-terms-btn');
+
+        let currentRecipe = null;
+        let currentMode = 'standard';
+        let currentStepIndex = 0;
+
+        // Initialize thumbnails & favorites state
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.video-thumbnail').forEach(thumb => {
+                const type = thumb.dataset.type;
+                const url = thumb.dataset.url;
+                if (type === 'youtube' && url) {
+                    const ytId = getYouTubeId(url);
+                    const img = document.createElement('img');
+                    img.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+                    img.alt = "YouTube Thumbnail";
+                    img.loading = "lazy";
+                    thumb.insertBefore(img, thumb.firstChild);
+                }
+            });
+            updateFavoriteButtonsState();
+        });
+
+        // Favorites Handling
+        function getFavorites() {
+            return JSON.parse(localStorage.getItem('flavorfeed_favorites')) || [];
+        }
+
+        function toggleFavorite(id) {
+            let favs = getFavorites();
+            const recipe = recipeData[id];
+            const exists = favs.includes(Number(id));
+
+            if (exists) {
+                favs = favs.filter(favId => favId !== Number(id));
+                trackEvent('remove_favorite', 'User Action', recipe.title, { food_category: recipe.category });
+            } else {
+                favs.push(Number(id));
+                trackEvent('add_favorite', 'User Action', recipe.title, { food_category: recipe.category });
+            }
+
+            localStorage.setItem('flavorfeed_favorites', JSON.stringify(favs));
+            updateFavoriteButtonsState();
+            
+            if (favoritesSection.classList.contains('active')) {
+                renderFavorites();
+            }
+        }
+
+        function updateFavoriteButtonsState() {
+            const favs = getFavorites();
+            videoCards.forEach(card => {
+                const cardId = Number(card.dataset.id);
+                const btn = card.querySelector('.card-fav-btn');
+                if (btn) {
+                    if (favs.includes(cardId)) {
+                        btn.classList.add('active');
+                        btn.innerText = "Favorited";
+                    } else {
+                        btn.classList.remove('active');
+                        btn.innerText = "Favorite";
+                    }
+                }
+            });
+
+            if (currentRecipe && detailFavBtn) {
+                if (favs.includes(Number(currentRecipe.id))) {
+                    detailFavBtn.classList.add('active');
+                    detailFavBtn.innerText = "Favorited";
+                } else {
+                    detailFavBtn.classList.remove('active');
+                    detailFavBtn.innerText = "Add to Favorites";
+                }
+            }
+        }
+
+        function renderFavorites() {
+            const favList = document.getElementById('favorites-list');
+            const favs = getFavorites();
+
+            if (favs.length === 0) {
+                favList.innerHTML = '<p style="color: var(--text-muted);">No favorite recipes saved yet.</p>';
+                return;
+            }
+
+            favList.innerHTML = '';
+            favs.forEach(id => {
+                const item = recipeData[id];
+                if (!item) return;
+
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <div>
+                        <strong>${item.title}</strong>
+                        <div style="color: var(--text-muted); font-size: 12px;">Category: ${item.category}</div>
+                    </div>
+                    <button class="clear-btn" style="padding: 4px 10px; font-size: 12px;">Remove</button>
+                `;
+
+                div.querySelector('strong').addEventListener('click', () => openRecipeDetail(id));
+                div.querySelector('.clear-btn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(id);
+                });
+
+                favList.appendChild(div);
+            });
+        }
+
+        clearFavsBtn.addEventListener('click', () => {
+            trackEvent('clear_all_favorites', 'User Action', 'Clear All');
+            localStorage.removeItem('flavorfeed_favorites');
+            updateFavoriteButtonsState();
+            renderFavorites();
+        });
+
+        // Toggle Sidebar Functions
+        function toggleSidebar(show) {
+            if (show) {
+                sidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+            } else {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            }
+        }
+
+        hamburgerBtn.addEventListener('click', () => toggleSidebar(true));
+        closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
+        sidebarOverlay.addEventListener('click', () => toggleSidebar(false));
+
+        // Navigation Controls
+        sideNavHome.addEventListener('click', () => { toggleSidebar(false); openHome(); });
+        sideNavFavs.addEventListener('click', () => { toggleSidebar(false); openFavorites(); });
+        sideNavHistory.addEventListener('click', () => { toggleSidebar(false); openHistory(); });
+        sideNavAbout.addEventListener('click', () => { toggleSidebar(false); aboutModal.classList.add('active'); });
+        sideNavTerms.addEventListener('click', () => { toggleSidebar(false); termsModal.classList.add('active'); });
+
+        closeAboutBtn.addEventListener('click', () => aboutModal.classList.remove('active'));
+        closeTermsBtn.addEventListener('click', () => termsModal.classList.remove('active'));
+
+        window.addEventListener('click', (e) => {
+            if (e.target === aboutModal) aboutModal.classList.remove('active');
+            if (e.target === termsModal) termsModal.classList.remove('active');
+        });
+
+        function switchSection(targetSection) {
+            [feedSection, detailsSection, favoritesSection, historySection].forEach(sec => sec.classList.remove('active'));
+            targetSection.classList.add('active');
+            
+            navHome.classList.toggle('active', targetSection === feedSection);
+            navFavs.classList.toggle('active', targetSection === favoritesSection);
+            navHistory.classList.toggle('active', targetSection === historySection);
+
+            if (targetSection !== detailsSection) {
+                activeVideo.pause();
+                activeVideo.src = "";
+                youtubeContainer.innerHTML = "";
+            }
+        }
+
+        function openHome() {
+            trackEvent('click_nav_home', 'Navigation', 'Home');
+            switchSection(feedSection);
+        }
+
+        function openFavorites() {
+            trackEvent('click_nav_favorites', 'Navigation', 'Favorites');
+            renderFavorites();
+            switchSection(favoritesSection);
+        }
+
+        function openHistory() {
+            trackEvent('click_nav_history', 'Navigation', 'History');
+            renderHistory();
+            switchSection(historySection);
+        }
+
+        navHome.addEventListener('click', openHome);
+        navFavs.addEventListener('click', openFavorites);
+        navHistory.addEventListener('click', openHistory);
+
+        clearHistoryBtn.addEventListener('click', () => {
+            trackEvent('click_clear_history', 'History', 'Clear All');
+            localStorage.removeItem('flavorfeed_history');
+            renderHistory();
+        });
+
+        // Feed card interaction
+        videoCards.forEach(card => {
+            const previewVideo = card.querySelector('video');
+            if (previewVideo) {
+                card.addEventListener('mouseenter', () => { previewVideo.play().catch(e => {}); });
+                card.addEventListener('mouseleave', () => { previewVideo.pause(); previewVideo.currentTime = 0; });
+            }
+
+            card.addEventListener('click', () => {
+                const videoId = card.dataset.id;
+                openRecipeDetail(videoId);
+            });
+        });
+
+        function openRecipeDetail(videoId) {
+            currentRecipe = recipeData[videoId];
+            const videoTitle = currentRecipe.title;
+            
+            trackEvent('view_recipe', 'Recipe View', videoTitle, { food_category: currentRecipe.category });
+            saveToHistory(videoId, videoTitle);
+
+            document.getElementById('recipe-title').innerText = videoTitle;
+            
+            const ingredientsList = document.getElementById('recipe-ingredients');
+            ingredientsList.innerHTML = '';
+            currentRecipe.ingredients.forEach(ing => {
+                const li = document.createElement('li');
+                li.innerText = ing;
+                ingredientsList.appendChild(li);
+            });
+
+            updateFavoriteButtonsState();
+            setMode('standard');
+            switchSection(detailsSection);
+            window.scrollTo(0, 0);
+        }
+
+        detailFavBtn.addEventListener('click', () => {
+            if (currentRecipe) toggleFavorite(currentRecipe.id);
+        });
+
+        function saveToHistory(id, title) {
+            let history = JSON.parse(localStorage.getItem('flavorfeed_history')) || [];
+            history = history.filter(item => item.id !== id);
+            history.unshift({ id, title, date: new Date().toLocaleDateString() });
+            localStorage.setItem('flavorfeed_history', JSON.stringify(history));
+        }
+
+        function renderHistory() {
+            const historyList = document.getElementById('history-list');
+            const history = JSON.parse(localStorage.getItem('flavorfeed_history')) || [];
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<p style="color: var(--text-muted);">No viewing history yet. Explore some recipes!</p>';
+                return;
+            }
+
+            historyList.innerHTML = '';
+            history.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `<span><strong>${item.title}</strong></span><span style="color: var(--text-muted); font-size: 12px;">${item.date}</span>`;
+                
+                div.addEventListener('click', () => openRecipeDetail(item.id));
+                historyList.appendChild(div);
+            });
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            currentStepIndex = 0;
+            
+            modeStandard.classList.toggle('active', mode === 'standard');
+            modeStep.classList.toggle('active', mode === 'step');
+
+            trackEvent('change_playback_mode', 'Player', mode, { recipe: currentRecipe ? currentRecipe.title : 'Unknown' });
+
+            if (currentRecipe.videoType === 'youtube') {
+                activeVideo.style.display = 'none';
+                youtubeContainer.style.display = 'block';
+                const ytId = getYouTubeId(currentRecipe.videoUrl);
+                youtubeContainer.innerHTML = `<iframe width="100%" height="450" src="https://www.youtube.com/embed/${ytId}?autoplay=${mode === 'step' ? 0 : 1}&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                activeVideo.style.display = 'block';
+                youtubeContainer.style.display = 'none';
+                activeVideo.src = currentRecipe.videoUrl;
+                if (mode === 'standard') {
+                    activeVideo.play();
+                } else {
+                    activeVideo.pause();
+                }
+            }
+
+            renderSteps();
+        }
+
+        function renderSteps() {
+            const stepsList = document.getElementById('recipe-steps');
+            stepsList.innerHTML = '';
+
+            if (currentMode === 'standard') {
+                currentRecipe.steps.forEach(step => {
+                    const li = document.createElement('li');
+                    li.innerText = step;
+                    stepsList.appendChild(li);
+                });
+            } else {
+                const currentStep = document.createElement('li');
+                currentStep.style.fontWeight = 'bold';
+                currentStep.style.fontSize = '18px';
+                currentStep.innerText = `Step ${currentStepIndex + 1}: ${currentRecipe.steps[currentStepIndex]}`;
+                stepsList.appendChild(currentStep);
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'mode-btn';
+                nextBtn.style.marginTop = '20px';
+                nextBtn.innerText = currentStepIndex < currentRecipe.steps.length - 1 ? 'Next Step' : 'Finish Tutorial';
+                nextBtn.addEventListener('click', () => {
+                    trackEvent('click_tutorial_step', 'Tutorial', `Step ${currentStepIndex + 1}`);
+                    if (currentStepIndex < currentRecipe.steps.length - 1) {
+                        currentStepIndex++;
+                        renderSteps();
+                    } else {
+                        setMode('standard');
+                    }
+                });
+                stepsList.appendChild(nextBtn);
+            }
+        }
+
+        modeStandard.addEventListener('click', () => setMode('standard'));
+        modeStep.addEventListener('click', () => setMode('step'));
+
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                trackEvent('click_category_filter', 'Categories', filter);
+
+                videoCards.forEach(card => {
+                    if (filter === 'All' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm.length > 2) {
+                trackEvent('search_recipes', 'Search', searchTerm);
+            }
+
+            videoCards.forEach(card => {
+                const title = card.querySelector('.video-title').innerText.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            categoryButtons.forEach(b => b.classList.remove('active'));
+            categoryButtons[0].classList.add('active');
+        });
+    </script>
+
+
+
+
+
+
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --surface-color: #ffffff;
+            --text-color: #111827;
+            --accent-red: #cc0000;
+            --accent-gold: #ffcc00;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --sidebar-bg: #111827;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 70px;
+            padding-bottom: 90px;
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: var(--surface-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Hamburger Button (3-Dash) */
+        .hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 28px;
+            height: 22px;
+            padding: 0;
+            z-index: 1100;
+        }
+
+        .hamburger-btn span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Slide-out Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1200;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            color: #ffffff;
+            z-index: 1300;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s ease;
+            padding: 24px;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+
+        .close-sidebar-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-link {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .sidebar-contact-info {
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 16px;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        /* Search & Filters */
+        .search-section {
+            padding: 10px 20px;
+            background-color: var(--bg-color);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 2px var(--accent-red);
+        }
+
+        .category-menu {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px 20px;
+            scrollbar-width: none;
+        }
+
+        .category-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            background-color: var(--surface-color);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .category-btn.active {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border-color: var(--accent-red);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 20px 20px;
+            flex-grow: 1;
+        }
+
+        .video-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 160px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail video,
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glass-play-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: transform 0.2s;
+            z-index: 2;
+        }
+
+        .glass-play-btn::after {
+            content: '';
+            border-style: solid;
+            border-width: 8px 0 8px 16px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 4px;
+        }
+
+        .video-card:hover .glass-play-btn {
+            transform: scale(1.1);
+        }
+
+        .video-info {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .video-author {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .card-fav-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .card-fav-btn.active {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border-color: var(--accent-red);
+        }
+
+        /* Video Details View & Generic Modals */
+        .page-section {
+            display: none;
+            width: 100%;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            width: 100%;
+        }
+
+        video, #youtube-container iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            border-radius: 12px;
+        }
+        
+        .mode-selection {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .mode-btn {
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .mode-btn.active, .mode-btn:hover {
+            border-color: var(--accent-red);
+            background-color: var(--bg-color);
+        }
+
+        .fav-action-btn {
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .fav-action-btn.active {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border-color: var(--accent-red);
+        }
+
+        .recipe-content {
+            margin-top: 20px;
+        }
+
+        .recipe-title {
+            color: var(--text-color);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .recipe-section-title {
+            color: var(--accent-red);
+            font-size: 18px;
+            margin: 20px 0 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        li, ol {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        /* Legal / About Modals */
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .info-modal.active {
+            display: flex;
+        }
+
+        .info-modal-content {
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .info-modal-content h2 {
+            color: var(--accent-red);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+
+        .info-modal-content h3 {
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .info-modal-content p, .info-modal-content ul {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+
+        .close-info-modal {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* History & Favorites Section Styles */
+        .list-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .clear-btn {
+            background-color: var(--surface-color);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+            background-color: var(--accent-red);
+            color: #ffffff;
+        }
+
+        .list-item {
+            background: var(--surface-color);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .list-item:hover {
+            border-color: var(--accent-red);
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            left: 20px;
+            right: 20px;
+            bottom: 15px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            color: var(--accent-red);
+        }
+
+        @media (min-width: 900px) {
+            .details-container {
+                flex-direction: row;
+                gap: 40px;
+                align-items: start;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            video, #youtube-container {
+                width: 60%;
+            }
+
+            .recipe-content {
+                width: 40%;
+                margin-top: 0;
+            }
+        }
+    </style>
+
+</body>
+
+</html>
