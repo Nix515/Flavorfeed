@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorFeed</title>
+
+    <!-- GOOGLE ANALYTICS STREAM CODE INTEGRATION -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YDK180Q0VD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YDK180Q0VD');
+
+    </script>
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-1K74HTTFYC"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-1K74HTTFYC'); </script> 
+    <!-- ========================================== -->
+
+  
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="brand">FlavorFeed</div>
+        <div class="profile-img"></div>
+    </header>
+
+    <main style="width: 100%;">
+        
+        <!-- Home / Feed Section -->
+        <section id="feed-section" class="page-section active">
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="Search recipes..." id="search-bar">
+            </div>
+
+            <div class="category-menu" id="category-menu">
+                <button class="category-btn active" data-filter="All">All</button>
+                <button class="category-btn" data-filter="Tea">Tea</button>
+                <button class="category-btn" data-filter="Seafood">Seafood</button>
+                <button class="category-btn" data-filter="Normal Food">Normal Food</button>
+            </div>
+
+            <div class="video-grid" id="video-grid">
+                
+                <div class="video-card" data-category="Tea" data-id="1">
+                    <div class="video-thumbnail">
+                        <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" muted loop playsinline></video>
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Masala Chai Recipe</div>
+                        <div class="video-author">By Astro</div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="Seafood" data-id="2">
+                    <div class="video-thumbnail">
+                        <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" muted loop playsinline></video>
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Grilled Salmon</div>
+                        <div class="video-author">By Astro</div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="Normal Food" data-id="3">
+                    <div class="video-thumbnail">
+                        <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" muted loop playsinline></video>
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Spaghetti Bolognese</div>
+                        <div class="video-author">By Astro</div>
+                    </div>
+                </div>
+
+                 <div class="video-card" data-category="Tea" data-id="4">
+                    <div class="video-thumbnail">
+                        <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" muted loop playsinline></video>
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Herbal Tea Blend</div>
+                        <div class="video-author">By Astro</div>
+                    </div>
+                </div>
+
+                 <div class="video-card" data-category="Seafood" data-id="5">
+                    <div class="video-thumbnail">
+                        <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" muted loop playsinline></video>
+                        <div class="glass-play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Shrimp Scampi</div>
+                        <div class="video-author">By Astro</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Recipe Details View -->
+        <section id="details-section" class="page-section">
+            <div class="details-container">
+                <div style="width: 100%;" id="player-column">
+                    <div class="mode-selection">
+                        <button class="mode-btn active" id="mode-standard">Smooth Playback</button>
+                        <button class="mode-btn" id="mode-step">Step-by-Step</button>
+                    </div>
+                    <video id="active-video" controls controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="" type="video/mp4">
+                    </video>
+                    <div id="youtube-container" style="display: none;"></div>
+                </div>
+                
+                <div class="recipe-content">
+                    <h2 class="recipe-title" id="recipe-title">Recipe Title</h2>
+                    
+                    <div class="recipe-section-title">Ingredients</div>
+                    <ul id="recipe-ingredients"></ul>
+
+                    <div class="recipe-section-title">Instructions</div>
+                    <ol id="recipe-steps"></ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- History / Saved Section -->
+        <section id="history-section" class="page-section">
+            <div class="history-container">
+                <div class="history-header">
+                    <h2 style="color: var(--accent-red);">Viewing History</h2>
+                    <button class="clear-history-btn" id="clear-history-btn">Clear History</button>
+                </div>
+                <div id="history-list">
+                    <p style="color: var(--text-muted);">No viewing history yet. Explore some recipes!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-btn active" id="nav-home">
+            <span>Home</span>
+        </button>
+        <button class="nav-btn" id="nav-history">
+            <span>History</span>
+        </button>
+    </nav>
+
+    <script>
+        /* ==========================================================
+           ANALYTICS HELPER FUNCTION
+           ========================================================== */
+        function trackEvent(action, category, label) {
+            if (typeof gtag === 'function') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label
+                });
+            }
+            console.log("Analytics Tracked -> Action:", action, "| Category:", category, "| Label:", label);
+        }
+        /* ========================================================== */
+
+        const recipeData = {
+            1: {
+                id: 1,
+                title: "Masala Chai Recipe",
+                ingredients: ["1 cup water", "1 cup milk", "1 tbsp black tea leaves", "1 tsp masala spice mix", "1 tsp sugar"],
+                steps: ["Bring water and spices to a boil.", "Add tea leaves and sugar.", "Pour in milk and simmer until rich.", "Strain and serve hot."],
+                videoType: "local",
+                videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" 
+            },
+            2: {
+                id: 2,
+                title: "Grilled Salmon",
+                ingredients: ["2 salmon fillets", "2 tbsp olive oil", "1 lemon, sliced", "Salt and pepper", "Fresh dill"],
+                steps: ["Preheat grill.", "Season salmon fillets with olive oil, salt, and pepper.", "Place on grill with lemon slices.", "Cook for 4-5 minutes per side until flaky."],
+                videoType: "local",
+                videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+            },
+            3: {
+                id: 3,
+                title: "Spaghetti Bolognese",
+                ingredients: ["200g spaghetti", "100g minced beef", "1/2 onion, chopped", "1 garlic clove, minced", "1 cup tomato sauce"],
+                steps: ["Cook spaghetti according to package instructions.", "Brown the minced beef with onion and garlic.", "Add tomato sauce and simmer.", "Serve sauce over spaghetti."],
+                videoType: "local",
+                videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            },
+            4: {
+                id: 4,
+                title: "Herbal Tea Blend",
+                ingredients: ["1 cup hot water", "1 chamomile tea bag", "1 tsp honey", "1 slice of lemon"],
+                steps: ["Steep tea bag in hot water for 5 minutes.", "Remove bag and stir in honey.", "Add lemon slice and enjoy."],
+                videoType: "youtube",
+                videoUrl: "tgbNymZ7vqY" 
+            },
+             5: {
+                id: 5,
+                title: "Shrimp Scampi",
+                ingredients: ["200g shrimp, peeled", "2 tbsp butter", "2 garlic cloves, sliced", "1/4 cup white wine", "1 tbsp lemon juice"],
+                steps: ["Melt butter in a pan over medium heat.", "Add garlic and cook until fragrant.", "Add shrimp and cook until pink.", "Pour in wine and lemon juice, simmer briefly."],
+                videoType: "youtube",
+                videoUrl: "tgbNymZ7vqY" 
+            }
+        };
+
+        const feedSection = document.getElementById('feed-section');
+        const detailsSection = document.getElementById('details-section');
+        const historySection = document.getElementById('history-section');
+        const videoCards = document.querySelectorAll('.video-card');
+        const searchBar = document.getElementById('search-bar');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        
+        const navHome = document.getElementById('nav-home');
+        const navHistory = document.getElementById('nav-history');
+        const clearHistoryBtn = document.getElementById('clear-history-btn');
+
+        const activeVideo = document.getElementById('active-video');
+        const youtubeContainer = document.getElementById('youtube-container');
+        const modeStandard = document.getElementById('mode-standard');
+        const modeStep = document.getElementById('mode-step');
+
+        let currentRecipe = null;
+        let currentMode = 'standard';
+        let currentStepIndex = 0;
+
+        function switchSection(targetSection) {
+            [feedSection, detailsSection, historySection].forEach(sec => sec.classList.remove('active'));
+            targetSection.classList.add('active');
+            
+            navHome.classList.toggle('active', targetSection === feedSection);
+            navHistory.classList.toggle('active', targetSection === historySection);
+
+            if (targetSection !== detailsSection) {
+                activeVideo.pause();
+                activeVideo.src = "";
+                youtubeContainer.innerHTML = "";
+            }
+        }
+
+        navHome.addEventListener('click', () => {
+            trackEvent('click_nav_home', 'Navigation', 'Home');
+            switchSection(feedSection);
+        });
+        
+        navHistory.addEventListener('click', () => {
+            trackEvent('click_nav_history', 'Navigation', 'History');
+            renderHistory();
+            switchSection(historySection);
+        });
+
+        clearHistoryBtn.addEventListener('click', () => {
+            trackEvent('click_clear_history', 'History', 'Clear All');
+            localStorage.removeItem('flavorfeed_history');
+            renderHistory();
+        });
+
+        // Hover video previews on feed cards
+        videoCards.forEach(card => {
+            const previewVideo = card.querySelector('video');
+            if (previewVideo) {
+                card.addEventListener('mouseenter', () => {
+                    previewVideo.play().catch(e => {});
+                });
+                card.addEventListener('mouseleave', () => {
+                    previewVideo.pause();
+                    previewVideo.currentTime = 0;
+                });
+            }
+
+            card.addEventListener('click', () => {
+                const videoId = card.dataset.id;
+                const videoTitle = card.querySelector('.video-title').innerText;
+                currentRecipe = recipeData[videoId];
+                
+                trackEvent('click_recipe_card', 'Video Feed', videoTitle);
+
+                // Save to Local Storage History
+                saveToHistory(videoId, videoTitle);
+
+                // Populate recipe content
+                document.getElementById('recipe-title').innerText = videoTitle;
+                
+                const ingredientsList = document.getElementById('recipe-ingredients');
+                ingredientsList.innerHTML = '';
+                currentRecipe.ingredients.forEach(ing => {
+                    const li = document.createElement('li');
+                    li.innerText = ing;
+                    ingredientsList.appendChild(li);
+                });
+
+                setMode('standard');
+                switchSection(detailsSection);
+                window.scrollTo(0, 0);
+            });
+        });
+
+        function saveToHistory(id, title) {
+            let history = JSON.parse(localStorage.getItem('flavorfeed_history')) || [];
+            history = history.filter(item => item.id !== id);
+            history.unshift({ id, title, date: new Date().toLocaleDateString() });
+            localStorage.setItem('flavorfeed_history', JSON.stringify(history));
+        }
+
+        function renderHistory() {
+            const historyList = document.getElementById('history-list');
+            const history = JSON.parse(localStorage.getItem('flavorfeed_history')) || [];
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<p style="color: var(--text-muted);">No viewing history yet. Explore some recipes!</p>';
+                return;
+            }
+
+            historyList.innerHTML = '';
+            history.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.innerHTML = `<span><strong>${item.title}</strong></span><span style="color: var(--text-muted); font-size: 12px;">${item.date}</span>`;
+                
+                div.addEventListener('click', () => {
+                    trackEvent('click_history_item', 'History', item.title);
+                    currentRecipe = recipeData[item.id];
+                    document.getElementById('recipe-title').innerText = item.title;
+                    
+                    const ingredientsList = document.getElementById('recipe-ingredients');
+                    ingredientsList.innerHTML = '';
+                    currentRecipe.ingredients.forEach(ing => {
+                        const li = document.createElement('li');
+                        li.innerText = ing;
+                        ingredientsList.appendChild(li);
+                    });
+
+                    setMode('standard');
+                    switchSection(detailsSection);
+                    window.scrollTo(0, 0);
+                });
+
+                historyList.appendChild(div);
+            });
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            currentStepIndex = 0;
+            
+            modeStandard.classList.toggle('active', mode === 'standard');
+            modeStep.classList.toggle('active', mode === 'step');
+
+            trackEvent('change_playback_mode', 'Player', mode);
+
+            if (currentRecipe.videoType === 'youtube') {
+                activeVideo.style.display = 'none';
+                youtubeContainer.style.display = 'block';
+                youtubeContainer.innerHTML = `<iframe width="100%" height="450" src="https://www.youtube.com/embed/${currentRecipe.videoUrl}?autoplay=${mode === 'step' ? 0 : 1}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                activeVideo.style.display = 'block';
+                youtubeContainer.style.display = 'none';
+                activeVideo.src = currentRecipe.videoUrl;
+                if (mode === 'standard') {
+                    activeVideo.play();
+                } else {
+                    activeVideo.pause();
+                }
+            }
+
+            renderSteps();
+        }
+
+        function renderSteps() {
+            const stepsList = document.getElementById('recipe-steps');
+            stepsList.innerHTML = '';
+
+            if (currentMode === 'standard') {
+                currentRecipe.steps.forEach(step => {
+                    const li = document.createElement('li');
+                    li.innerText = step;
+                    stepsList.appendChild(li);
+                });
+            } else {
+                const currentStep = document.createElement('li');
+                currentStep.style.fontWeight = 'bold';
+                currentStep.style.fontSize = '18px';
+                currentStep.innerText = `Step ${currentStepIndex + 1}: ${currentRecipe.steps[currentStepIndex]}`;
+                stepsList.appendChild(currentStep);
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'mode-btn';
+                nextBtn.style.marginTop = '20px';
+                nextBtn.innerText = currentStepIndex < currentRecipe.steps.length - 1 ? 'Next Step' : 'Finish Tutorial';
+                nextBtn.addEventListener('click', () => {
+                    trackEvent('click_tutorial_step', 'Tutorial', `Step ${currentStepIndex + 1}`);
+                    if (currentStepIndex < currentRecipe.steps.length - 1) {
+                        currentStepIndex++;
+                        renderSteps();
+                    } else {
+                        setMode('standard');
+                    }
+                });
+                stepsList.appendChild(nextBtn);
+            }
+        }
+
+        modeStandard.addEventListener('click', () => setMode('standard'));
+        modeStep.addEventListener('click', () => setMode('step'));
+
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                trackEvent('click_category_filter', 'Categories', filter);
+
+                videoCards.forEach(card => {
+                    if (filter === 'All' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            trackEvent('search_recipes', 'Search', searchTerm);
+
+            videoCards.forEach(card => {
+                const title = card.querySelector('.video-title').innerText.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+             categoryButtons.forEach(b => b.classList.remove('active'));
+             categoryButtons[0].classList.add('active');
+        });
+    </script>
+
+
+
+  <style>
+        :root {
+            --bg-color: #f9fafb;
+            --surface-color: #ffffff;
+            --text-color: #111827;
+            --accent-red: #cc0000;
+            --accent-gold: #ffcc00;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 70px;
+            padding-bottom: 90px;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: var(--surface-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23ffffff" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Search & Filters */
+        .search-section {
+            padding: 10px 20px;
+            background-color: var(--bg-color);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 2px var(--accent-red);
+        }
+
+        .category-menu {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px 20px;
+            scrollbar-width: none;
+        }
+
+        .category-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            background-color: var(--surface-color);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .category-btn.active {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border-color: var(--accent-red);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 20px 20px;
+            flex-grow: 1;
+        }
+
+        .video-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 160px;
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glass-play-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: transform 0.2s;
+            z-index: 2;
+        }
+
+        .glass-play-btn::after {
+            content: '';
+            border-style: solid;
+            border-width: 8px 0 8px 16px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 4px;
+        }
+
+        .video-card:hover .glass-play-btn {
+            transform: scale(1.1);
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .video-author {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Video Details View */
+        .page-section {
+            display: none;
+            width: 100%;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            width: 100%;
+        }
+
+        video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            border-radius: 12px;
+        }
+        
+        .mode-selection {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .mode-btn {
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .mode-btn.active, .mode-btn:hover {
+            border-color: var(--accent-red);
+            background-color: var(--bg-color);
+        }
+
+        .recipe-content {
+            margin-top: 20px;
+        }
+
+        .recipe-title {
+            color: var(--text-color);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .recipe-section-title {
+            color: var(--accent-red);
+            font-size: 18px;
+            margin: 20px 0 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        li, ol {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        /* History View Styles */
+        .history-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .clear-history-btn {
+            background-color: var(--surface-color);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-history-btn:hover {
+            background-color: var(--accent-red);
+            color: #ffffff;
+        }
+
+        .history-item {
+            background: var(--surface-color);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .history-item:hover {
+            border-color: var(--accent-red);
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            left: 20px;
+            right: 20px;
+            bottom: 15px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            color: var(--accent-red);
+        }
+
+        @media (min-width: 900px) {
+            .details-container {
+                flex-direction: row;
+                gap: 40px;
+                align-items: start;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            video, #youtube-container {
+                width: 60%;
+            }
+
+            .recipe-content {
+                width: 40%;
+                margin-top: 0;
+            }
+        }
+    </style>
+
+
+</body>
+</html>
