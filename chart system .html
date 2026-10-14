@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlavorFeed Public Chat</title>
+ 
+
+  <!-- Firebase Compatibility SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>FlavorFeed</h2>
+    <div class="online-badge">Online: <span id="online-count">0</span></div>
+  </div>
+
+  <div class="chat-messages" id="message-list"></div>
+
+  <form class="chat-input-area" id="chat-form">
+    <input type="text" id="message-input" placeholder="Type a message..." required autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script>
+  
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyClYod2OB3U4OKOsbz_Nn481wYEX67gpGY",
+  authDomain: "studio-7090825513-c3143.firebaseapp.com",
+  databaseURL: "https://studio-7090825513-c3143-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "studio-7090825513-c3143",
+  storageBucket: "studio-7090825513-c3143.firebasestorage.app",
+  messagingSenderId: "701610655582",
+  appId: "1:701610655582:web:3888b3dfbf25b777dc99cf",
+  measurementId: "G-YT8BPQLTCB"
+};
+
+// Initialize Firebase
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  const messagesRef = db.ref('messages');
+  const reportsRef = db.ref('reports');
+  const presenceRef = db.ref('presence');
+  const connectedRef = db.ref('.info/connected');
+
+  // Generate or retrieve persistent user identity for UI rendering
+  let currentUserId = localStorage.getItem('chat_user_id');
+  if (!currentUserId) {
+    currentUserId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('chat_user_id', currentUserId);
+  }
+
+  // 2. Active Online Users Counter Logic
+  connectedRef.on('value', (snap) => {
+    if (snap.val() === true) {
+      const myPresenceRef = presenceRef.push();
+      myPresenceRef.onDisconnect().remove();
+      myPresenceRef.set({ online: true, timestamp: firebase.database.ServerValue.TIMESTAMP });
+    }
+  });
+
+  presenceRef.on('value', (snap) => {
+    const count = snap.numChildren();
+    document.getElementById('online-count').textContent = count;
+  });
+
+  // 3. Message Handling (Send Message)
+  const chatForm = document.getElementById('chat-form');
+  const messageInput = document.getElementById('message-input');
+
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = messageInput.value.trim();
+    if (text) {
+      messagesRef.push({
+        senderId: currentUserId,
+        text: text,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+      messageInput.value = '';
+    }
+  });
+
+  // 4. Realtime Message Rendering
+  const messageList = document.getElementById('message-list');
+
+  messagesRef.on('value', (snapshot) => {
+    messageList.innerHTML = '';
+    snapshot.forEach((childSnap) => {
+      const messageKey = childSnap.key;
+      const data = childSnap.val();
+      
+      const isSelf = data.senderId === currentUserId;
+      const messageCard = document.createElement('div');
+      messageCard.className = `message-card ${isSelf ? 'self' : ''}`;
+
+      const timeStr = data.timestamp ? new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+
+      messageCard.innerHTML = `
+        <div class="message-text">${escapeHtml(data.text)}</div>
+        <div class="message-meta">
+          <span>${timeStr}</span>
+        </div>
+        <div class="message-actions">
+          ${isSelf ? `<button class="action-btn" onclick="editMessage('${messageKey}', '${escapeHtml(data.text)}')">Edit</button>` : ''}
+          ${isSelf ? `<button class="action-btn delete" onclick="deleteMessage('${messageKey}')">Delete</button>` : ''}
+          ${!isSelf ? `<button class="action-btn report" onclick="reportMessage('${messageKey}')">Report</button>` : ''}
+        </div>
+      `;
+
+      messageList.appendChild(messageCard);
+    });
+    messageList.scrollTop = messageList.scrollHeight;
+  });
+
+  // 5. Features Logic (Edit, Delete, Report)
+  function editMessage(key, currentText) {
+    const newText = prompt("Edit your message:", currentText);
+    if (newText !== null && newText.trim() !== "") {
+      messagesRef.child(key).update({
+        text: newText.trim(),
+        edited: true
+      });
+    }
+  }
+
+  function deleteMessage(key) {
+    if (confirm("Are you sure you want to delete this message?")) {
+      messagesRef.child(key).remove();
+    }
+  }
+
+  function reportMessage(key) {
+    const reason = prompt("Reason for reporting this message:");
+    if (reason) {
+      reportsRef.push({
+        messageId: key,
+        reportedBy: currentUserId,
+        reason: reason,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+      alert("Message reported. Thank you for helping keep the chat safe.");
+    }
+  }
+
+  function escapeHtml(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  }
+</script>
+  
+  
+   <style>
+    :root {
+      --primary-color: #007bff;
+      --bg-color: #f4f6f8;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      background: aliceblue;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 85vh;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 15px 20px;
+      background-color: white;
+      height:3%;
+      color: red;
+      box-shadow:0 0 5px black;
+     
+      position:fixed;
+      top:0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width:90%;
+    }
+
+    .online-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message-card {
+      background: #e9ecef;
+      padding: 10px 14px;
+      border-radius: 8px;
+      position: relative;
+      max-width: 80%;
+      align-self: flex-start;
+    }
+
+    .message-card.self {
+      align-self: flex-end;
+      background: #d1e7dd;
+    }
+
+    .message-meta {
+      font-size: 0.75rem;
+      color: #6c757d;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .message-actions {
+      margin-top: 6px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      color: #0d6efd;
+      cursor: pointer;
+      font-size: 0.75rem;
+      padding: 0;
+    }
+
+    .action-btn.delete { color: #dc3545; }
+    .action-btn.report { color: #fd7e14; }
+
+    .chat-input-area {
+      padding: 15px;
+      border-top: 1px solid #dee2e6;
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .chat-input-area button {
+      padding: 15px 10px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+
+</body>
+</html>
